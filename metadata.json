@@ -1,5 +1,5 @@
 {
   "name": "My Expense Tracker",
   "requestFramePermissions": [],
-  "description": ""
+  "description": "A premium expense tracking application with group split capabilities and AI analysis, integrated with Supabase."
 }

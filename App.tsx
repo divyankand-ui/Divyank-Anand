@@ -11,13 +11,22 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check for existing session
-    const session = getSession();
-    if (session) {
-      setUser(session);
-      setView('DASHBOARD');
-    }
-    setLoading(false);
+    // Check for existing session asynchronously
+    const initSession = async () => {
+      try {
+        const sessionUser = await getSession();
+        if (sessionUser) {
+          setUser(sessionUser);
+          setView('DASHBOARD');
+        }
+      } catch (error) {
+        console.error("Session check failed", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    initSession();
   }, []);
 
   const handleLogin = (user: User) => {
